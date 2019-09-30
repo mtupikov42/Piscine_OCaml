@@ -8,10 +8,7 @@ let rec check_str pred str i =
 		check_str pred str (i + 1)
 
 let ft_string_all pred str =
-	if String.length str = 0 then
-		false
-	else
-		check_str pred str 0
+	check_str pred str 0
 
 let is_digit c =
 	c >= '0' && c <= '9'
