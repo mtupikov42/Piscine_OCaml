@@ -13,6 +13,7 @@ let main () =
 	print_char '\n';
 	print_int (ft_power (-1) 2);
 	print_char '\n';
-	print_int (ft_power 69 0)
+	print_int (ft_power 69 0);
+	print_char '\n'
 
 let () = main ()

@@ -1,14 +1,17 @@
-let ft_string_all pred str =
-	let strLength = String.length in
-	let rec string_checker i =
-		if i < 0 || !pred (String.get str i) = false then
-			false
-		else
-			string_checker i - 1
-
+let rec check_str pred str i =
+	let strLength = String.length str - 1 in
+	if i > strLength then
 		true
-	in
-	string_checker strLength - 1
+	else if not (pred (String.get str i)) then
+		false
+	else
+		check_str pred str (i + 1)
+
+let ft_string_all pred str =
+	if String.length str = 0 then
+		false
+	else
+		check_str pred str 0
 
 let is_digit c =
 	c >= '0' && c <= '9'
@@ -17,8 +20,10 @@ let is_alpha c =
 	c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z'
 
 let main () =
-	print_bool (ft_string_all is_digit "0123456789");
-	print_bool (ft_string_all is_digit "000cock999");
-	print_bool (ft_string_all is_digit "")
+	Printf.printf "%B\n" (ft_string_all is_digit "0123456789");
+	Printf.printf "%B\n" (ft_string_all is_digit "000cock999");
+	Printf.printf "%B\n" (ft_string_all is_digit "");
+	Printf.printf "%B\n" (ft_string_all is_alpha "dawdawdwada");
+	Printf.printf "%B\n" (ft_string_all is_alpha "1488")
 
 let () = main ()
