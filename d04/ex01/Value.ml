@@ -51,19 +51,30 @@ let toStringVerbose t =
 	| King -> "King"
 	| As -> "As"
 
-let rec nextHelper t list =
-	match list with
-	| t1 :: t2 :: tail ->
-		if t = t1 then
-			t2
-		else
-			nextHelper (t2 :: tail)
-	| item ->
-		invalid_arg "No next value"
-in
+
 
 let next t =
-	nextHelper t all
+	let rec nextHelper list =
+		match list with
+		| t1 :: t2 :: tail ->
+			if t = t1 then
+				t2
+			else
+				nextHelper (t2 :: tail)
+		| item ->
+			invalid_arg "No next value"
+	in
+	nextHelper all
 
 let previous t =
-	nextHelper t (List.rev all)
+	let rec prevHelper list =
+		match list with
+		| t1 :: t2 :: tail ->
+			if t = t2 then
+				t1
+			else
+				prevHelper (t2 :: tail)
+		| item ->
+			invalid_arg "No prev value"
+	in
+	prevHelper all

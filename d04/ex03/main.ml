@@ -1,8 +1,9 @@
 let main () =
+	Random.self_init();
 	let rec emptyDeck deck =
 		let (card, deck) = Deck.drawCard deck in
 		print_endline (Deck.Card.toString card);
-		empty_deck deck
+		emptyDeck deck
 	in
 	let deck = Deck.newDeck () in
 
@@ -11,5 +12,9 @@ let main () =
 
 	List.iter print_endline (Deck.toStringListVerbose deck);
 	print_endline "";
+	try
+		emptyDeck deck
+	with
+		Failure str -> print_endline str
 
-	emptyDeck deck;
+let () = main ()

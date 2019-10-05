@@ -22,7 +22,7 @@ sig
 
 	type t
 
-	val newCard : Value.t -> Color.t -> t
+	val newCard : Color.t -> Value.t -> t
 
 	val allSpades : t list
 	val allClubs : t list

@@ -1,5 +1,4 @@
 let main () =
-	print_int List.length Color.all
 	let lst = Color.all in
 	let rec loop list =
 		match list with

@@ -1,6 +1,4 @@
-module Color :
-sig
-
+module Color = struct
 	type t = Spade | Heart | Diamond | Club
 
 	let all = [Spade; Heart; Diamond; Club]
@@ -21,9 +19,7 @@ sig
 
 end
 
-module Value :
-sig
-
+module Value = struct
 	type t = T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 | Jack | Queen | King | As
 
 	let all = [T2; T3; T4; T5; T6; T7; T8; T9; T10; Jack; Queen; King; As]
@@ -77,31 +73,39 @@ sig
 		| King -> "King"
 		| As -> "As"
 
-	let rec nextHelper t list =
-		match list with
-		| t1 :: t2 :: tail ->
-			if t = t1 then
-				t2
-			else
-				nextHelper (t2 :: tail)
-		| item ->
-			invalid_arg "No next value"
-	in
-
 	let next t =
-		nextHelper t all
+		let rec nextHelper list =
+			match list with
+			| t1 :: t2 :: tail ->
+				if t = t1 then
+					t2
+				else
+					nextHelper (t2 :: tail)
+			| item ->
+				invalid_arg "No next value"
+		in
+		nextHelper all
 
 	let previous t =
-		nextHelper t (List.rev all)
-
+		let rec prevHelper list =
+			match list with
+			| t1 :: t2 :: tail ->
+				if t = t2 then
+					t1
+				else
+					prevHelper (t2 :: tail)
+			| item ->
+				invalid_arg "No prev value"
+		in
+		prevHelper all
 end
 
 type t = {
-	color : Color.t
+	color : Color.t;
 	value : Value.t
 }
 
-let newCard col val = { color = col; value = val }
+let newCard c v = { color = c; value = v }
 
 let allSpades =
 	let allValues = Value.all in
