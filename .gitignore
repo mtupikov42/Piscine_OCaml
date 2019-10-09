@@ -2,3 +2,4 @@
 *.cmx
 *.out
 *.o
+*.DS_Store
