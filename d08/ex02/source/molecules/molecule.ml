@@ -74,6 +74,6 @@ class virtual molecule
 			^ (list_to_string m_atoms 0)
 
 		method equals ( other : molecule ) =
-			String.compare m_name other#name
+			String.equal m_name other#name
 
 	end
