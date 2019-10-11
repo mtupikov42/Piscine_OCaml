@@ -1,4 +1,4 @@
-RESULT = alkane
+RESULT = reaction
 SOURCES =	source/atoms/atom.ml \
 			source/atoms/hydrogen.ml \
 			source/atoms/carbon.ml \
@@ -8,6 +8,8 @@ SOURCES =	source/atoms/atom.ml \
 			source/molecules/methane.ml \
 			source/molecules/ethane.ml \
 			source/molecules/octane.ml \
+			\
+			source/reactions/reaction.ml \
 			\
 			main.ml \
 
